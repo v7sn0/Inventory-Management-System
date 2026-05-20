@@ -1,0 +1,41 @@
+# Inventory Management System #
+
+## Date 5/19/2026 ##
+
+### By: Hasan Mahfoodh ###
+
+#### [LinkedIn](www.linkedin.com/in/hasan-mahfoodh) | [GitHub](https://github.com/v7sn0) ####
+
+***
+### Description ###
+A website where the users can enter the products they have and their quantity and adjust them when they sell or purchase more products or remove them when they are no longer in stock.
+
+***
+
+### Technologies ###
+
+* MongoDB + Mongoose
+* Express.js
+* React
+* Node.js
+
+***
+
+### Getting Started ###
+  Empty for now.
+***
+
+### Screenshots ###
+
+Empty for now.
+
+***
+
+### Task List ###
+- [ ] Create the backend.
+- [ ] Create the frontend.
+- [ ] Style the website.
+
+### Credits ###
+
+Empty for now.
