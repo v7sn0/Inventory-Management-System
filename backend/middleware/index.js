@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 // hash the password when signing up
 const hashPassword = async (password) => {
@@ -10,7 +11,31 @@ const checkPassword = async (password, dbPassword) => {
   return await bcrypt.compare(password, dbPassword)
 }
 
+// create token
+const createToken = async (payload) => {
+  return await jwt.sign(payload, process.env.APP_SECRET)
+}
+
+// verify token
+const verifyToken = async (req, res, next) => {
+  const token = req.headers["authorization"].split(" ")[1]
+  try {
+    const payload = jwt.verify(token, process.env.APP_SECRET)
+    if (payload) {
+      req.user = payload
+      return next()
+    } else {
+      res.send("Unauthorized access.")
+    }
+  } catch (error) {
+    console.error("An error occurred.", error.message)
+    res.send("Invalid token")
+  }
+}
+
 module.exports = {
   hashPassword,
   checkPassword,
+  createToken,
+  verifyToken,
 }

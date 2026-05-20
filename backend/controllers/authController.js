@@ -1,6 +1,7 @@
 const User = require("../models/User")
 const middleware = require("../middleware")
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 const signUp = async (req, res) => {
   try {
@@ -39,8 +40,15 @@ const signIn = async (req, res) => {
       return res.send("Wrong password")
     }
 
-    res.send("Logged in successfully.")
-    // create token must be complete ----------------------------------------------------------------------------------------------
+    const payload = {
+      username: user.username,
+      id: user._id,
+    }
+
+    const token = await middleware.createToken(payload)
+
+    // console.log(token)
+    res.send(token)
   } catch (error) {
     console.error("an error occurred.", error.message)
   }

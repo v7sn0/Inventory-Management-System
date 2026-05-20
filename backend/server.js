@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 
 const authRouter = require("./routes/authRouter")
+const productRouter = require("./routes/productRouter")
 
 const PORT = 3000
 require("./db")
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
 app.use("/auth", authRouter)
+app.use("/products", productRouter)
 
 app.get("/", (req, res) => {
   res.send("Welcome!")
