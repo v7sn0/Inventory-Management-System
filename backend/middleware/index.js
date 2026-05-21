@@ -25,11 +25,14 @@ const verifyToken = async (req, res, next) => {
       req.user = payload
       return next()
     } else {
-      res.send("Unauthorized access.")
+      res.status(401).json({ status: "Error", message: "Unauthorized access." })
     }
   } catch (error) {
     console.error("An error occurred.", error.message)
-    res.send("Invalid token")
+    res.status(401).json({
+      status: "Error",
+      message: "An error occurred while verifying the token.",
+    })
   }
 }
 
