@@ -51,6 +51,7 @@ const signIn = async (req, res) => {
     res.send(token)
   } catch (error) {
     console.error("an error occurred.", error.message)
+    res.status()
   }
 }
 
