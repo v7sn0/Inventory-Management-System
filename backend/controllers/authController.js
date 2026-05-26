@@ -61,7 +61,41 @@ const signIn = async (req, res) => {
   }
 }
 
+const changePassword = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user.id })
+    const { oldPassword, newPassword } = req.body
+
+    if (await middleware.checkPassword(oldPassword, user.password)) {
+      const hashedPassword = await middleware.hashPassword(newPassword)
+      await User.findByIdAndUpdate(
+        req.user.id,
+        { password: hashedPassword },
+        {
+          returnDocument: "after",
+        }
+      )
+      return res.status(200).json({ message: "Password changed successfully." })
+    }
+    res
+      .status(400)
+      .json({ status: "Error", message: "The old password is wrong." })
+  } catch (error) {
+    res.status(400).json({
+      status: "Error",
+      message: "An error occurred while changing the password.",
+    })
+  }
+}
+
+const checkSession = (req, res) => {
+  const payload = req.user
+  res.status(200).json(payload)
+}
+
 module.exports = {
   signUp,
   signIn,
+  changePassword,
+  checkSession,
 }
