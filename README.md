@@ -5,7 +5,7 @@
 ### By: Hasan Mahfoodh ###
 
 #### [LinkedIn](www.linkedin.com/in/hasan-mahfoodh) | [GitHub](https://github.com/v7sn0) ####
-
+#### [Trello Page](https://trello.com/b/8UWEasjo/ims-project) ####
 ***
 ### Description ###
 A website where the users can enter the products they have and their quantity and adjust them when they sell or purchase more products or remove them when they are no longer in stock.
@@ -32,7 +32,7 @@ Empty for now.
 ***
 
 ### Task List ###
-- [ ] Create the backend.
+- [x] Create the backend.
 - [ ] Create the frontend.
 - [ ] Style the website.
 
