@@ -6,7 +6,7 @@ const middleware = require("../middleware")
 const authController = require("../controllers/authController")
 
 router.post("/sign-up", authController.signUp)
-router.put("/sign-in", authController.signIn)
+router.post("/sign-in", authController.signIn)
 router.put(
   "/change-password",
   middleware.verifyToken,
