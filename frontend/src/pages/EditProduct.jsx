@@ -17,9 +17,9 @@ const EditProduct = ({ products, setProducts }) => {
 
   useEffect(() => {
     const getProduct = async () => {
-      const product = products.find((product) => product._id === id)
+      const chosenProduct = products.find((product) => product._id === id)
 
-      setFormState(product)
+      setFormState(chosenProduct)
       console.log(formState)
     }
 
@@ -38,6 +38,17 @@ const EditProduct = ({ products, setProducts }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const response = Client.put(`/products/update-product/${id}`, formState)
+
+    const chosenProduct = products.find((product) => product._id === id)
+
+    const updatedProductProp = products.map((product) => {
+      if (product._id === id) {
+        return formState
+      }
+      return product
+    })
+
+    setProducts(updatedProductProp)
 
     navigate("/")
   }

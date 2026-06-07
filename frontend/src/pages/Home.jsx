@@ -6,6 +6,12 @@ import Client from "../services/api"
 const Home = ({ user, products }) => {
   const navigate = useNavigate()
 
+  // const [currentPage, setCurrentPage] = useEffect(1)
+  // const [lastProductIndex, setLastProductIndex] = useState()
+  // const [firstProductIndex, setFirstProductIndex] = useState()
+
+  // const [productsPerPage, setProductsPerPage] = useState()
+
   return user ? (
     <>
       <h1>Welcome to home!</h1>
