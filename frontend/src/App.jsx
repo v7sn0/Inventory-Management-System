@@ -39,7 +39,12 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home user={user} products={products} />} />
+        <Route
+          path="/"
+          element={
+            <Home user={user} products={products} setProducts={setProducts} />
+          }
+        />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         <Route path="/add-product" element={<AddProduct user={user} />} />

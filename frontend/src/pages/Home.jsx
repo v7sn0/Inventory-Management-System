@@ -3,7 +3,7 @@ import ShowProducts from "../components/ShowProducts"
 import { useState, useEffect } from "react"
 import Client from "../services/api"
 
-const Home = ({ user, products }) => {
+const Home = ({ user, products, setProducts }) => {
   const navigate = useNavigate()
 
   // const [currentPage, setCurrentPage] = useEffect(1)
@@ -15,7 +15,7 @@ const Home = ({ user, products }) => {
   return user ? (
     <>
       <h1>Welcome to home!</h1>
-      <ShowProducts products={products} />
+      <ShowProducts products={products} setProducts={setProducts} />
     </>
   ) : (
     <>

@@ -41,14 +41,14 @@ const EditProduct = ({ products, setProducts }) => {
 
     const chosenProduct = products.find((product) => product._id === id)
 
-    const updatedProductProp = products.map((product) => {
+    const updatedProductsProp = products.map((product) => {
       if (product._id === id) {
         return formState
       }
       return product
     })
 
-    setProducts(updatedProductProp)
+    setProducts(updatedProductsProp)
 
     navigate("/")
   }
