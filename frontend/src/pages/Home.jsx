@@ -1,16 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import ShowProducts from "../components/ShowProducts"
-import { useState, useEffect } from "react"
+import Pagination from "../components/Pagination"
+import { useState } from "react"
 import Client from "../services/api"
 
 const Home = ({ user, products, setProducts }) => {
   const navigate = useNavigate()
-
-  // const [currentPage, setCurrentPage] = useEffect(1)
-  // const [lastProductIndex, setLastProductIndex] = useState()
-  // const [firstProductIndex, setFirstProductIndex] = useState()
-
-  // const [productsPerPage, setProductsPerPage] = useState()
 
   return user ? (
     <>
