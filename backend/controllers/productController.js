@@ -60,6 +60,27 @@ const getProducts = async (req, res) => {
 // }   my code, works fine but any user can update others products.
 // -----------------------------------------------------------------------------------------------------------------
 
+const getProductByID = async (req, res) => {
+  try {
+    const product = await Product.findOne({
+      _id: req.params.id,
+      user: req.user.id,
+    })
+
+    if (product) {
+      return res.status(200).json(product)
+    }
+
+    res.status(404).json({ status: "Error", message: "No product found." })
+  } catch (error) {
+    console.error("An error occurred.", error.message)
+    res.status(400).json({
+      status: "Error",
+      message: "An error occurred while finding the product.",
+    })
+  }
+}
+
 const updateProductById = async (req, res) => {
   try {
     const product = await Product.findOneAndUpdate(
@@ -113,6 +134,9 @@ const deleteProductById = async (req, res) => {
 module.exports = {
   createProduct,
   getProducts,
+  getProductByID,
   updateProductById,
   deleteProductById,
 }
+
+// the error messages might be changed later.

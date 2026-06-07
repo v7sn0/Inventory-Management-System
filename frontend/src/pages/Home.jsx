@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom"
+import ShowProducts from "../components/ShowProducts"
+import { useState, useEffect } from "react"
+import Client from "../services/api"
 
-const Home = ({ user }) => {
+const Home = ({ user, products }) => {
   const navigate = useNavigate()
 
   return user ? (
     <>
       <h1>Welcome to home!</h1>
+      <ShowProducts products={products} />
     </>
   ) : (
     <>

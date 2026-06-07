@@ -24,7 +24,9 @@ const SignIn = ({ setUser }) => {
     const userData = await signIn(formState)
     setFormState(initialState)
     setUser(userData)
-    navigate("/")
+    if (userData) {
+      navigate("/")
+    }
   }
 
   return (

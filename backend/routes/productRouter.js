@@ -17,6 +17,12 @@ router.get("/view-all", middleware.verifyToken, productController.getProducts) /
 //   productController.getProducts
 // ) my way, uses id (req.params."id")
 
+router.get(
+  "/view-product/:id",
+  middleware.verifyToken,
+  productController.getProductByID
+)
+
 router.put(
   "/update-product/:id",
   middleware.verifyToken,
