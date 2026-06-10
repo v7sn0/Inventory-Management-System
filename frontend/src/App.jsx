@@ -7,6 +7,7 @@ import Home from "./pages/Home"
 import AddProduct from "./pages/AddProduct"
 import EditProduct from "./pages/EditProduct"
 import ChangePassword from "./pages/ChangePassword"
+import ProtectedRoutes from "./components/ProtectedRoutes"
 import { useEffect, useState } from "react"
 import { checkSession } from "./services/auth"
 import Client from "./services/api"
@@ -42,25 +43,40 @@ function App() {
       <Nav user={user} setUser={setUser} />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home user={user} products={products} setProducts={setProducts} />
-          }
-        />
+        <Route element={<ProtectedRoutes user={user} />}>
+          <Route
+            path="/"
+            element={
+              <Home user={user} products={products} setProducts={setProducts} />
+            }
+          />
+
+          <Route
+            path="/add-product"
+            element={
+              <AddProduct
+                user={user}
+                products={products}
+                setProducts={setProducts}
+              />
+            }
+          />
+
+          <Route
+            path="/edit-product/:id"
+            element={
+              <EditProduct products={products} setProducts={setProducts} />
+            }
+          />
+
+          <Route
+            path="/change-password"
+            element={<ChangePassword user={user} />}
+          />
+        </Route>
+
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
-        <Route path="/add-product" element={<AddProduct user={user} />} />
-        <Route
-          path="/edit-product/:id"
-          element={
-            <EditProduct products={products} setProducts={setProducts} />
-          }
-        />
-        <Route
-          path="/change-password"
-          element={<ChangePassword user={user} />}
-        />
       </Routes>
     </>
   )

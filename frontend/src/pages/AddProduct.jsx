@@ -2,7 +2,7 @@ import { useState } from "react"
 import Client from "../services/api"
 import { useNavigate } from "react-router-dom"
 
-const AddProduct = ({ user }) => {
+const AddProduct = ({ user, products, setProducts }) => {
   const navigate = useNavigate()
 
   const initialState = {
@@ -36,8 +36,15 @@ const AddProduct = ({ user }) => {
       user: user.id,
       ...formState,
     })
-    console.log(response)
+
+    const updatedProductsProp = [...products]
+
+    updatedProductsProp.push(response.data)
+
+    console.log(updatedProductsProp)
     setFormState(initialState)
+    setProducts(updatedProductsProp)
+    navigate("/")
   }
 
   return (
