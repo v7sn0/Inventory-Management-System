@@ -6,7 +6,7 @@ const signUp = async (req, res) => {
     const existingUser = await User.findOne({ username: req.body.username })
     if (existingUser) {
       return res
-        .status(400)
+        .status(409)
         .json({ status: "Error", message: "User already exists." })
     }
     hashedPassword = await middleware.hashPassword(req.body.password)
@@ -17,7 +17,7 @@ const signUp = async (req, res) => {
     res.status(200).json(user)
   } catch (error) {
     console.error("an error happened", error.message) // for debugging purposes
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while signing up.",
     })
@@ -38,7 +38,7 @@ const signIn = async (req, res) => {
     )
     if (!checkPassword) {
       return res
-        .status(401)
+        .status(400)
         .json({ status: "Error", message: "The password/username is wrong." })
     }
 
@@ -54,7 +54,7 @@ const signIn = async (req, res) => {
     res.status(200).json({ user: payload, token })
   } catch (error) {
     console.error("an error occurred.", error.message)
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while signing in.",
     })
@@ -81,7 +81,7 @@ const changePassword = async (req, res) => {
       .status(400)
       .json({ status: "Error", message: "The old password is wrong." })
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while changing the password.",
     })

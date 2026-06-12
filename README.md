@@ -38,4 +38,8 @@ Empty for now.
 
 ### Credits ###
 
-[Protected Routes Tutorial](https://www.youtube.com/watch?v=pyfwQUc5Ssk)
+* [Protected Routes Tutorial](https://www.youtube.com/watch?v=pyfwQUc5Ssk)
+* [useState Hook to Handle Loading Tutorial](https://www.youtube.com/watch?v=qtheqr0jgIQ)
+* [useState Hook to Handle Errors Tutorial](https://www.youtube.com/watch?v=DTBta08fXGU)
+
+

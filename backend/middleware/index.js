@@ -29,7 +29,7 @@ const verifyToken = async (req, res, next) => {
     }
   } catch (error) {
     console.error("An error occurred.", error.message)
-    res.status(401).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while verifying the token.",
     })

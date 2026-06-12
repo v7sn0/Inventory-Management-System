@@ -1,21 +1,34 @@
 import Client from "../services/api"
 import EditProduct from "../pages/EditProduct"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 const ShowProducts = ({ products, setProducts }) => {
+  const [handleError, setHandleError] = useState(null)
   const deleteProduct = async (id) => {
-    await Client.delete(`/products/delete-product/${id}`)
+    setHandleError(null)
+    try {
+      await Client.delete(`/products/delete-product/${id}`)
 
-    const deletedProductIndex = products.findIndex(
-      (product) => product._id === id
-    )
+      let productsArray = [...products]
 
-    products.splice(deletedProductIndex, 1)
+      const deletedProductIndex = productsArray.findIndex(
+        (product) => product._id === id
+      )
 
-    // copying contents of products array after the selected product got deleted from it, to updatedProductsProp, because react isnt observing changes inside the prop "products", it just detects if what is in the memory "products in this case" is changed or no
-    const updatedProductsProp = [...products]
+      productsArray.splice(deletedProductIndex, 1)
 
-    setProducts(updatedProductsProp)
+      // copying contents of products array after the selected product got deleted from it, to updatedProductsProp, because react isnt observing changes inside the prop "products", it just detects if what is in the memory "products in this case" is changed or no
+      // const updatedProductsProp = [...products]
+
+      // Updated: I knew from GPT that using the state directly in an assignment is not a good practice, and can potentially cause problems. Thats why I am using the array "productsArray" to store the product state value and then modify the newly created array.
+
+      // const updatedProductsProp = [...products]
+
+      setProducts(productsArray)
+    } catch (error) {
+      setHandleError(error.response.data.message)
+    }
   }
 
   return (
@@ -48,6 +61,7 @@ const ShowProducts = ({ products, setProducts }) => {
           ))}
         </tbody>
       </table>
+      {handleError && <p>{handleError}</p>}
     </>
   )
 }

@@ -12,6 +12,7 @@ const AddProduct = ({ user, products, setProducts }) => {
   }
 
   const [formState, setFormState] = useState(initialState)
+  const [handleError, setHandleError] = useState(null)
 
   const handleChange = (e) => {
     setFormState({
@@ -20,31 +21,36 @@ const AddProduct = ({ user, products, setProducts }) => {
     })
   }
 
-  if (!user) {
-    return (
-      <>
-        <h2>Loading...</h2>
-        <p>If the page did not work, maybe you are not signed in</p>
-        <button onClick={() => navigate("/sign-in")}>Sign in</button>
-      </>
-    )
-  }
+  // if (!user) {
+  //   return (
+  //     <>
+  //       <h2>Loading...</h2>
+  //       <p>If the page did not work, maybe you are not signed in</p>
+  //       <button onClick={() => navigate("/sign-in")}>Sign in</button>
+  //     </>
+  //   )
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await Client.post("/products/add-product", {
-      user: user.id,
-      ...formState,
-    })
+    setHandleError(null)
+    try {
+      const response = await Client.post("/products/add-product", {
+        user: user.id,
+        ...formState,
+      })
 
-    const updatedProductsProp = [...products]
+      const updatedProductsProp = [...products]
 
-    updatedProductsProp.push(response.data)
+      updatedProductsProp.push(response.data)
 
-    console.log(updatedProductsProp)
-    setFormState(initialState)
-    setProducts(updatedProductsProp)
-    navigate("/")
+      console.log(updatedProductsProp)
+      setFormState(initialState)
+      setProducts(updatedProductsProp)
+      navigate("/")
+    } catch (error) {
+      setHandleError(error.response.data.message)
+    }
   }
 
   return (
@@ -78,6 +84,8 @@ const AddProduct = ({ user, products, setProducts }) => {
           id="price"
           type="number"
         />
+
+        {handleError && <p>{handleError}</p>}
 
         <button>Create</button>
       </form>

@@ -2,14 +2,14 @@ const Product = require("../models/Product")
 
 const createProduct = async (req, res) => {
   try {
-    if (await Product.findOne({ user: req.user.id })) {
-      const existingProduct = await Product.findOne({ name: req.body.name })
-
-      if (existingProduct) {
-        return res
-          .status(400)
-          .json({ status: "Error", message: "Product already exists." })
-      }
+    const existingProduct = await Product.findOne({
+      user: req.user.id,
+      name: req.body.name,
+    })
+    if (existingProduct) {
+      return res
+        .status(409)
+        .json({ status: "Error", message: "Product already exists." })
     }
     const product = await Product.create({
       user: req.user.id,
@@ -20,7 +20,7 @@ const createProduct = async (req, res) => {
     res.status(200).json(product)
   } catch (error) {
     console.error("An error occurred.", error.message)
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while creating a product.",
     })
@@ -36,7 +36,7 @@ const getProducts = async (req, res) => {
     res.status(200).json(products)
   } catch (error) {
     console.error("An error occurred.", error.message)
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while getting all products.",
     })
@@ -74,7 +74,7 @@ const getProductByID = async (req, res) => {
     res.status(404).json({ status: "Error", message: "No product found." })
   } catch (error) {
     console.error("An error occurred.", error.message)
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while finding the product.",
     })
@@ -83,6 +83,17 @@ const getProductByID = async (req, res) => {
 
 const updateProductById = async (req, res) => {
   try {
+    const existingProduct = await Product.find({
+      user: req.user.id,
+      name: req.body.name,
+    })
+    console.log(existingProduct)
+
+    if (existingProduct.length > 1) {
+      return res
+        .status(409)
+        .json({ status: "Error", message: "The product already exists." })
+    }
     const product = await Product.findOneAndUpdate(
       { _id: req.params.id, user: req.user.id },
       req.body,
@@ -90,10 +101,11 @@ const updateProductById = async (req, res) => {
         returnDocument: "after",
       }
     )
+
     res.status(200).json(product)
   } catch (error) {
     console.error("An error occurred.", error.message)
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while updating the product.",
     })
@@ -124,7 +136,7 @@ const deleteProductById = async (req, res) => {
     res.status(200).json(product)
   } catch (error) {
     console.error("An error occurred", error.message)
-    res.status(400).json({
+    res.status(500).json({
       status: "Error",
       message: "An error occurred while deleting a product.",
     })

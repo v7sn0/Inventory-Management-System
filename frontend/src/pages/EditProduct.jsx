@@ -14,6 +14,7 @@ const EditProduct = ({ products, setProducts }) => {
   // }
 
   const [formState, setFormState] = useState()
+  const [handleError, setHandleError] = useState(null)
 
   useEffect(() => {
     const getProduct = async () => {
@@ -26,7 +27,7 @@ const EditProduct = ({ products, setProducts }) => {
     getProduct()
   }, [products])
 
-  if (!formState) return <h1>Loading</h1>
+  if (!formState) return <h1>Loading . . .</h1>
 
   const handleChange = (e) => {
     setFormState({
@@ -35,22 +36,30 @@ const EditProduct = ({ products, setProducts }) => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = Client.put(`/products/update-product/${id}`, formState)
+    setHandleError(null)
+    try {
+      const response = await Client.put(
+        `/products/update-product/${id}`,
+        formState
+      )
 
-    const chosenProduct = products.find((product) => product._id === id)
+      const chosenProduct = products.find((product) => product._id === id)
 
-    const updatedProductsProp = products.map((product) => {
-      if (product._id === id) {
-        return formState
-      }
-      return product
-    })
+      const updatedProductsProp = products.map((product) => {
+        if (product._id === id) {
+          return formState
+        }
+        return product
+      })
 
-    setProducts(updatedProductsProp)
+      setProducts(updatedProductsProp)
 
-    navigate("/")
+      navigate("/")
+    } catch (error) {
+      setHandleError(error.response.data.message)
+    }
   }
 
   return (
@@ -82,6 +91,8 @@ const EditProduct = ({ products, setProducts }) => {
           id="price"
           type="number"
         />
+
+        {handleError && <p>{handleError}</p>}
 
         <button>Update</button>
       </form>
