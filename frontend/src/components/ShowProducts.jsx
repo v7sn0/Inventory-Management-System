@@ -33,7 +33,7 @@ const ShowProducts = ({ products, setProducts }) => {
 
   return (
     <>
-      <h1>Here are your products</h1>
+      {/* <h1>Here are your products</h1> */}
 
       <table>
         <thead>

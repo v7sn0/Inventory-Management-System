@@ -143,12 +143,37 @@ const deleteProductById = async (req, res) => {
   }
 } // I discoverd this (findOneAndDelete) function and used the same logic used in the above function and it solved it for me.
 
+const searchForProducts = async (req, res) => {
+  try {
+    const userQuery = new RegExp(`^${req.query.name}`, "i")
+    const products = await Product.find({
+      user: req.user.id,
+      name: { $regex: userQuery },
+    })
+    console.log(products)
+    console.log(userQuery)
+    if (products.length < 1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "No products found with that name." })
+    }
+    res.status(200).json(products)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).json({
+      status: "Error",
+      message: "An error occurred while searching for a product.",
+    })
+  }
+}
+
 module.exports = {
   createProduct,
   getProducts,
   getProductByID,
   updateProductById,
   deleteProductById,
+  searchForProducts,
 }
 
 // the error messages might be changed later.

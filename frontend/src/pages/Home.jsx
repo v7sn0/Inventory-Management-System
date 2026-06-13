@@ -3,6 +3,7 @@ import ShowProducts from "../components/ShowProducts"
 import Pagination from "../components/Pagination"
 import { useState, useEffect } from "react"
 import Client from "../services/api"
+import SearchBar from "../components/SearchBar"
 
 const Home = ({ user, products, setProducts }) => {
   const navigate = useNavigate()
@@ -19,6 +20,7 @@ const Home = ({ user, products, setProducts }) => {
   return Loading ? (
     <>
       <h1>Welcome to home!</h1>
+      <SearchBar setProducts={setProducts} />
       <ShowProducts products={products} setProducts={setProducts} />
     </>
   ) : (

@@ -35,4 +35,10 @@ router.delete(
   productController.deleteProductById
 )
 
+router.get(
+  "/search",
+  middleware.verifyToken,
+  productController.searchForProducts
+)
+
 module.exports = router
