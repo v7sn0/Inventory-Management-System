@@ -32,7 +32,7 @@ const ShowProducts = ({ products, setProducts }) => {
   }
 
   return (
-    <>
+    <div className="table-container">
       {/* <h1>Here are your products</h1> */}
 
       <table>
@@ -51,9 +51,12 @@ const ShowProducts = ({ products, setProducts }) => {
               <td>{product.qty}</td>
               <td>
                 <Link to={`/edit-product/${product._id}`}>
-                  <button>Edit</button>
+                  <button className="btn edit">Edit</button>
                 </Link>
-                <button onDoubleClick={() => deleteProduct(product._id)}>
+                <button
+                  className="btn delete"
+                  onDoubleClick={() => deleteProduct(product._id)}
+                >
                   Delete
                 </button>
               </td>
@@ -62,7 +65,7 @@ const ShowProducts = ({ products, setProducts }) => {
         </tbody>
       </table>
       {handleError && <p>{handleError}</p>}
-    </>
+    </div>
   )
 }
 

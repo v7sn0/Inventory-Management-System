@@ -83,17 +83,28 @@ const getProductByID = async (req, res) => {
 
 const updateProductById = async (req, res) => {
   try {
+    let productFlag = true
+    const id = req.params.id
     const existingProduct = await Product.find({
       user: req.user.id,
       name: req.body.name,
     })
-    console.log(existingProduct)
 
-    if (existingProduct.length > 1) {
+    existingProduct.forEach((product) => {
+      if (
+        product.name === req.body.name &&
+        String(product._id) !== String(id)
+      ) {
+        productFlag = false
+      }
+    })
+
+    if (!productFlag) {
       return res
         .status(409)
         .json({ status: "Error", message: "The product already exists." })
     }
+
     const product = await Product.findOneAndUpdate(
       { _id: req.params.id, user: req.user.id },
       req.body,

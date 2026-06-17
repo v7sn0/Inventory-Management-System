@@ -33,20 +33,24 @@ const SearchBar = ({ setProducts }) => {
   }
 
   return (
-    <>
+    <div className="search-bar">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Search</label>
+        {/* <label htmlFor="name" id="search-label">
+          Search
+        </label> */}
         <input
           onChange={handleChange}
           value={formState.name}
           name="name"
           id="name"
           type="text"
+          placeholder="Product Name"
+          id="search-input"
         />
-        <button>Search</button>
+        <button className="btn search">Search</button>
       </form>
       {handleError && <p>{handleError}</p>}
-    </>
+    </div>
   )
 }
 

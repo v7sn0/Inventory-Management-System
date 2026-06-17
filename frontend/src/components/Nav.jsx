@@ -12,16 +12,28 @@ const Nav = ({ user, setUser }) => {
 
   return user ? (
     <nav>
-      <NavLink to="/"> Home </NavLink>
-      <NavLink to="/add-product"> Add a Product </NavLink>
-      <NavLink to="/change-password"> Change Password </NavLink>
-      <NavLink to=""> </NavLink>
-      <button onClick={() => signOut()}>Signout</button>
+      <NavLink to="/" className="nav-links">
+        Home
+      </NavLink>
+      <NavLink to="/add-product" className="nav-links">
+        Add a Product
+      </NavLink>
+      <NavLink to="/change-password" className="nav-links">
+        {" "}
+        Change Password{" "}
+      </NavLink>
+      <span onClick={() => signOut()} className="nav-links">
+        Signout
+      </span>
     </nav>
   ) : (
     <nav>
-      <NavLink to="/sign-in">Sign in</NavLink>
-      <NavLink to="/sign-up">Sign up</NavLink>
+      <NavLink to="/sign-in" className="nav-links">
+        Sign in
+      </NavLink>
+      <NavLink to="/sign-up" className="nav-links">
+        Sign up
+      </NavLink>
     </nav>
   )
 }

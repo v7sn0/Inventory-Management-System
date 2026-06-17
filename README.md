@@ -41,5 +41,5 @@ Empty for now.
 * [Protected Routes Tutorial](https://www.youtube.com/watch?v=pyfwQUc5Ssk)
 * [useState Hook to Handle Loading Tutorial](https://www.youtube.com/watch?v=qtheqr0jgIQ)
 * [useState Hook to Handle Errors Tutorial](https://www.youtube.com/watch?v=DTBta08fXGU)
-
-
+* [RegExp in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+* [$regex in MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/regex/?utm_source=chatgpt.com#-regex--query-predicate-operator-)
