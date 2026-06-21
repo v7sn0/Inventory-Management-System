@@ -39,7 +39,7 @@ const ShowProducts = ({ products, setProducts }) => {
         <thead>
           <tr>
             <th>Product Name</th>
-            <th>Price</th>
+            <th>Price in BHD</th>
             <th>Quantity</th>
           </tr>
         </thead>

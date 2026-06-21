@@ -43,3 +43,5 @@ Empty for now.
 * [useState Hook to Handle Errors Tutorial](https://www.youtube.com/watch?v=DTBta08fXGU)
 * [RegExp in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 * [$regex in MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/regex/?utm_source=chatgpt.com#-regex--query-predicate-operator-)
+* [Username regex](https://ihateregex.io/expr/username/)
+* [Password regex](https://ihateregex.io/expr/password/)

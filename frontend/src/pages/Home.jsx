@@ -23,9 +23,9 @@ const Home = ({ user, products, setProducts }) => {
       <ShowProducts products={products} setProducts={setProducts} />
     </div>
   ) : (
-    <>
+    <div className="home">
       <h1>You have no products.</h1>
-    </>
+    </div>
   )
 }
 

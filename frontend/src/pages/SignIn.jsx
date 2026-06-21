@@ -30,29 +30,36 @@ const SignIn = ({ setUser }) => {
   }
 
   return (
-    <>
+    <div className="form-container sign-up-and-in">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
+        <h1 className="form-title">Sign In</h1>
+        <label htmlFor="username" className="form-label">
+          Username
+        </label>
         <input
           onChange={handleChange}
           value={formState.username}
           name="username"
           id="username"
           type="text"
+          className="form-input"
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
         <input
           onChange={handleChange}
           value={formState.password}
           name="password"
           id="password"
           type="password"
+          className="form-input"
         />
 
-        <button>Sign in</button>
+        <button className="form-btn btn">Sign in</button>
       </form>
-    </>
+    </div>
   )
 }
 

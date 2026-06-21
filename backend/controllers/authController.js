@@ -3,11 +3,25 @@ const middleware = require("../middleware")
 
 const signUp = async (req, res) => {
   try {
+    const usernameRegex = /^[a-z0-9_-]{3,15}$/ //copied from ihateregex.io and edited
+    const passwordRegex =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,}$/ //copied from ihateregex.io and edited
     const existingUser = await User.findOne({ username: req.body.username })
     if (existingUser) {
       return res
         .status(409)
         .json({ status: "Error", message: "User already exists." })
+    }
+    const validUsername = usernameRegex.test(req.body.username)
+    const validPassword = passwordRegex.test(req.body.password)
+    if (!validUsername) {
+      return res
+        .status(400)
+        .json({ status: "Error", message: "Username must follow the rules." })
+    } else if (!validPassword) {
+      return res
+        .status(400)
+        .json({ status: "Error", message: "Password must match the criteria." })
     }
     hashedPassword = await middleware.hashPassword(req.body.password)
     const user = await User.create({

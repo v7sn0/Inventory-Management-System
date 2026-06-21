@@ -63,40 +63,50 @@ const EditProduct = ({ products, setProducts }) => {
   }
 
   return (
-    <>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Product Name</label>
+        <h1 className="form-title">Edit Product</h1>
+        <label htmlFor="name" className="form-label">
+          Product Name
+        </label>
         <input
           onChange={handleChange}
           value={formState.name}
           name="name"
           id="name"
           type="text"
+          className="form-input"
         />
 
-        <label htmlFor="qty">Quantity</label>
+        <label htmlFor="qty" className="form-label">
+          Quantity
+        </label>
         <input
           onChange={handleChange}
           value={formState.qty}
           name="qty"
           id="qty"
           type="number"
+          className="form-input"
         />
 
-        <label htmlFor="price">Price</label>
+        <label htmlFor="price" className="form-label">
+          Price
+        </label>
         <input
           onChange={handleChange}
           value={formState.price}
           name="price"
           id="price"
           type="number"
+          className="form-input"
         />
 
         {handleError && <p>{handleError}</p>}
 
-        <button>Update</button>
+        <button className="form-btn btn">Update</button>
       </form>
-    </>
+    </div>
   )
 }
 
