@@ -11,6 +11,7 @@ const SignIn = ({ setUser }) => {
   }
 
   const [formState, setFormState] = useState(initialState)
+  const [handleError, setHandleError] = useState(null)
 
   const handleChange = (e) => {
     setFormState({
@@ -21,11 +22,15 @@ const SignIn = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const userData = await signIn(formState)
-    setFormState(initialState)
-    setUser(userData)
-    if (userData) {
-      navigate("/")
+    try {
+      const userData = await signIn(formState)
+      setFormState(initialState)
+      setUser(userData)
+      if (userData) {
+        navigate("/")
+      }
+    } catch (error) {
+      setHandleError(error.response.data.message)
     }
   }
 
@@ -58,6 +63,7 @@ const SignIn = ({ setUser }) => {
         />
 
         <button className="form-btn btn">Sign in</button>
+        {handleError && <p className="error">{handleError}</p>}
       </form>
     </div>
   )

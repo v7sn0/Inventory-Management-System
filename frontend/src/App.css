@@ -146,12 +146,13 @@ td {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.sign-up-error {
+.error {
   background-color: rgba(174, 39, 39, 0.4);
   margin: 4% auto;
   padding: 8px;
-  width: max-content;
+  max-width: 200px;
   border-radius: 5px;
+  font-size: 14px;
   user-select: none;
 }
 
@@ -199,7 +200,7 @@ td {
 }
 
 .requirements > p {
-  line-height: 5px;
+  margin: 5px 0 5px 0;
   font-size: 12px;
 }
 
@@ -207,7 +208,7 @@ td {
   margin-bottom: 2px;
 }
 
-.sign-up-page {
+.two-sides-page {
   background-color: rgba(1, 1, 1, 0.25);
   padding: 48px 20px;
   margin: 20px auto;
@@ -218,8 +219,10 @@ td {
   align-items: center;
 }
 
-.sign-up-left-side {
+.correct {
+  background-color: green;
 }
 
-.sign-up-right-side {
+.not-required {
+  color: black;
 }

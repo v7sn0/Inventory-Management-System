@@ -3,9 +3,9 @@ const middleware = require("../middleware")
 
 const signUp = async (req, res) => {
   try {
-    const usernameRegex = /^[a-z0-9_-]{3,15}$/ //copied from ihateregex.io and edited
+    const usernameRegex = /^[a-zA-Z0-9_-]{3,15}$/ //copied from ihateregex.io and edited
     const passwordRegex =
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,}$/ //copied from ihateregex.io and edited
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,16}$/ //copied from ihateregex.io and edited
     const existingUser = await User.findOne({ username: req.body.username })
     if (existingUser) {
       return res
@@ -77,8 +77,20 @@ const signIn = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
+    const passwordRegex =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,16}$/ //copied from ihateregex.io and edited
+
     const user = await User.findOne({ _id: req.user.id })
     const { oldPassword, newPassword } = req.body
+
+    if (!passwordRegex.test(newPassword)) {
+      return res
+        .status(400)
+        .json({
+          status: "Error",
+          message: "New password must match the criteria.",
+        })
+    }
 
     if (await middleware.checkPassword(oldPassword, user.password)) {
       const hashedPassword = await middleware.hashPassword(newPassword)

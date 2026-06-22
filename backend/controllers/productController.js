@@ -2,6 +2,10 @@ const Product = require("../models/Product")
 
 const createProduct = async (req, res) => {
   try {
+    const nameRegex = /^[a-zA-Z0-9_ -]{3,20}$/
+    const qtyRegex = /^[0-9]{1,3}$/
+    const priceRegex = /^[0-9]{1,3}$/
+
     const existingProduct = await Product.findOne({
       user: req.user.id,
       name: req.body.name,
@@ -10,6 +14,23 @@ const createProduct = async (req, res) => {
       return res
         .status(409)
         .json({ status: "Error", message: "Product already exists." })
+    }
+    if (!nameRegex.test(req.body.name)) {
+      return res.status(400).json({
+        status: "Error",
+        message:
+          "Product name must contain letters, spaces, numbers and - and _ only.",
+      })
+    } else if (!qtyRegex.test(req.body.qty)) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Price must be a number that doesn't exceed 999",
+      })
+    } else if (!priceRegex.test(req.body.price)) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Quantity must be a number that doesn't exceed 999",
+      })
     }
     const product = await Product.create({
       user: req.user.id,
@@ -90,6 +111,10 @@ const updateProductById = async (req, res) => {
       name: req.body.name,
     })
 
+    const nameRegex = /^[a-zA-Z0-9_-]{3,20}$/
+    const qtyRegex = /^[0-9]{1,3}$/
+    const priceRegex = /^[0-9]{1,3}$/
+
     existingProduct.forEach((product) => {
       if (
         product.name === req.body.name &&
@@ -103,6 +128,23 @@ const updateProductById = async (req, res) => {
       return res
         .status(409)
         .json({ status: "Error", message: "The product already exists." })
+    }
+
+    if (!nameRegex.test(req.body.name)) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Product name must contain letters, numbers and - and _ only.",
+      })
+    } else if (!qtyRegex.test(req.body.qty)) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Price must be a number that doesn't exceed 999",
+      })
+    } else if (!priceRegex.test(req.body.price)) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Quantity must be a number that doesn't exceed 999",
+      })
     }
 
     const product = await Product.findOneAndUpdate(
@@ -156,7 +198,14 @@ const deleteProductById = async (req, res) => {
 
 const searchForProducts = async (req, res) => {
   try {
-    const userQuery = new RegExp(`^${req.query.name}`, "i")
+    const nameRegex = /^[a-zA-Z0-9_ -]{1,20}$/
+    const userQuery = new RegExp(`${req.query.name}`, "i")
+
+    if (!nameRegex.test(req.query.name)) {
+      return res
+        .status(400)
+        .json({ status: "Error", message: "Enter a valid name." })
+    }
     const products = await Product.find({
       user: req.user.id,
       name: { $regex: userQuery },

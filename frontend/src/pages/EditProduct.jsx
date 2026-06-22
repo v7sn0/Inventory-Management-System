@@ -102,7 +102,7 @@ const EditProduct = ({ products, setProducts }) => {
           className="form-input"
         />
 
-        {handleError && <p>{handleError}</p>}
+        {handleError && <p className="error">{handleError}</p>}
 
         <button className="form-btn btn">Update</button>
       </form>

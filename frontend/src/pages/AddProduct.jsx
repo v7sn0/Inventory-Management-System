@@ -94,7 +94,7 @@ const AddProduct = ({ user, products, setProducts }) => {
           className="form-input"
         />
 
-        {handleError && <p>{handleError}</p>}
+        {handleError && <p className="error">{handleError}</p>}
 
         <button className="btn form-btn">Create</button>
       </form>

@@ -49,7 +49,7 @@ const SearchBar = ({ setProducts }) => {
         />
         <button className="btn search">Search</button>
       </form>
-      {handleError && <p>{handleError}</p>}
+      {handleError && <p className="error">{handleError}</p>}
     </div>
   )
 }
