@@ -48,6 +48,8 @@ const ChangePassword = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setHandleError(null)
+    setHandleSuccess(null)
     try {
       if (
         formState.oldPassword === formState.confirmPassword &&
@@ -60,7 +62,6 @@ const ChangePassword = ({ user }) => {
         })
         setFormState(initialState)
         setHandleSuccess(response.data.message)
-        console.log("reached")
       } else {
         setHandleError(
           "Old password must be the same as the confirmation password, and must not be empty"
@@ -126,7 +127,6 @@ const ChangePassword = ({ user }) => {
           <p id="pasReq3">At least one number</p>
           <p id="pasReq4">At least one special character from (#?!@$%^&*_-)</p>
           <p id="pasReq5">At least 8 characters, upto 16 characters</p>
-          {/* <p id="pasReq6">At most 16 characters</p> */}
         </div>
         {handleSuccess && <p className="success">{handleSuccess}</p>}
         {handleError && <p className="error">{handleError}</p>}

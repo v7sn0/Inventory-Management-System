@@ -7,12 +7,6 @@ const EditProduct = ({ products, setProducts }) => {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  // const initialState = {
-  //   name: "",
-  //   qty: "",
-  //   price: "",
-  // }
-
   const [formState, setFormState] = useState()
   const [handleError, setHandleError] = useState(null)
 
@@ -21,7 +15,6 @@ const EditProduct = ({ products, setProducts }) => {
       const chosenProduct = products.find((product) => product._id === id)
 
       setFormState(chosenProduct)
-      console.log(formState)
     }
 
     getProduct()

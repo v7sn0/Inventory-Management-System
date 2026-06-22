@@ -33,8 +33,6 @@ const ShowProducts = ({ products, setProducts }) => {
 
   return (
     <div className="table-container">
-      {/* <h1>Here are your products</h1> */}
-
       <table>
         <thead>
           <tr>

@@ -40,7 +40,6 @@ const createProduct = async (req, res) => {
     })
     res.status(200).json(product)
   } catch (error) {
-    console.error("An error occurred.", error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while creating a product.",
@@ -56,7 +55,6 @@ const getProducts = async (req, res) => {
 
     res.status(200).json(products)
   } catch (error) {
-    console.error("An error occurred.", error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while getting all products.",
@@ -94,7 +92,6 @@ const getProductByID = async (req, res) => {
 
     res.status(404).json({ status: "Error", message: "No product found." })
   } catch (error) {
-    console.error("An error occurred.", error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while finding the product.",
@@ -157,7 +154,6 @@ const updateProductById = async (req, res) => {
 
     res.status(200).json(product)
   } catch (error) {
-    console.error("An error occurred.", error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while updating the product.",
@@ -188,7 +184,6 @@ const deleteProductById = async (req, res) => {
     })
     res.status(200).json(product)
   } catch (error) {
-    console.error("An error occurred", error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while deleting a product.",
@@ -210,8 +205,6 @@ const searchForProducts = async (req, res) => {
       user: req.user.id,
       name: { $regex: userQuery },
     })
-    console.log(products)
-    console.log(userQuery)
     if (products.length < 1) {
       return res
         .status(404)
@@ -219,7 +212,6 @@ const searchForProducts = async (req, res) => {
     }
     res.status(200).json(products)
   } catch (error) {
-    console.error(error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while searching for a product.",
@@ -235,5 +227,3 @@ module.exports = {
   deleteProductById,
   searchForProducts,
 }
-
-// the error messages might be changed later.

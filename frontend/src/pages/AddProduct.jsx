@@ -21,16 +21,6 @@ const AddProduct = ({ user, products, setProducts }) => {
     })
   }
 
-  // if (!user) {
-  //   return (
-  //     <>
-  //       <h2>Loading...</h2>
-  //       <p>If the page did not work, maybe you are not signed in</p>
-  //       <button onClick={() => navigate("/sign-in")}>Sign in</button>
-  //     </>
-  //   )
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setHandleError(null)
@@ -44,7 +34,6 @@ const AddProduct = ({ user, products, setProducts }) => {
 
       updatedProductsProp.push(response.data)
 
-      console.log(updatedProductsProp)
       setFormState(initialState)
       setProducts(updatedProductsProp)
       navigate("/")

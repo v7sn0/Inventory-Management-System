@@ -30,7 +30,6 @@ const signUp = async (req, res) => {
     })
     res.status(200).json(user)
   } catch (error) {
-    console.error("an error happened", error.message) // for debugging purposes
     res.status(500).json({
       status: "Error",
       message: "An error occurred while signing up.",
@@ -62,12 +61,8 @@ const signIn = async (req, res) => {
     }
 
     const token = await middleware.createToken(payload)
-
-    // console.log(token)
-    // res.send(token)
     res.status(200).json({ user: payload, token })
   } catch (error) {
-    console.error("an error occurred.", error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while signing in.",
@@ -84,12 +79,10 @@ const changePassword = async (req, res) => {
     const { oldPassword, newPassword } = req.body
 
     if (!passwordRegex.test(newPassword)) {
-      return res
-        .status(400)
-        .json({
-          status: "Error",
-          message: "New password must match the criteria.",
-        })
+      return res.status(400).json({
+        status: "Error",
+        message: "New password must match the criteria.",
+      })
     }
 
     if (await middleware.checkPassword(oldPassword, user.password)) {

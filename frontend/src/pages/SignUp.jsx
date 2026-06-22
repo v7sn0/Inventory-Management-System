@@ -29,9 +29,6 @@ const SignUp = () => {
       ;/[a-zA-Z]{3}/.test(event.target.value)
         ? userReq1.classList.add("correct")
         : userReq1.classList.remove("correct")
-      // ;/[0-9_-]/g.test(event.target.value)
-      //   ? userReq2.classList.add("correct")
-      //   : userReq2.classList.remove("correct")
     }
 
     // interactive password
@@ -67,6 +64,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setHandleError(null)
     try {
       if (formState.password === formState.confirmPassword) {
         await signUp({
@@ -130,14 +128,6 @@ const SignUp = () => {
               <button className="form-btn btn" id="sign-up-btn">
                 Sign up
               </button>
-
-              {/* <ul>
-          <li>At least 8 characters</li>
-          <li>At least one upper case letter</li>
-          <li>At least on lower case letter</li>
-          <li>At least one number</li>
-          <li>At least one special character from ([#?!@$%^&*_-)</li>
-        </ul> */}
             </form>
           </div>
         </div>
@@ -151,10 +141,7 @@ const SignUp = () => {
                 (and may include numbers - and _ but that's not required){" "}
               </span>
             </p>
-            {/* <p id="userReq2">
-              Include numbers and - and _{" "}
-              <span class="not-required">(not required)</span>
-            </p> */}
+
             <h3>Passwords must contain </h3>
 
             <p id="pasReq1">At least one upper case letter</p>
@@ -164,7 +151,6 @@ const SignUp = () => {
               At least one special character from (#?!@$%^&*_-)
             </p>
             <p id="pasReq5">At least 8 characters, upto 16 characters</p>
-            {/* <p id="pasReq6">At most 16 characters</p> */}
           </div>
           {handleError && <p className="error">{handleError}</p>}
         </div>

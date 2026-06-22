@@ -4,7 +4,7 @@ const cors = require("cors")
 const authRouter = require("./routes/authRouter")
 const productRouter = require("./routes/productRouter")
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 require("./db")
 const app = express()
 

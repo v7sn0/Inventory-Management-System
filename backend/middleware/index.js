@@ -28,7 +28,6 @@ const verifyToken = async (req, res, next) => {
       res.status(401).json({ status: "Error", message: "Unauthorized access." })
     }
   } catch (error) {
-    console.error("An error occurred.", error.message)
     res.status(500).json({
       status: "Error",
       message: "An error occurred while verifying the token.",

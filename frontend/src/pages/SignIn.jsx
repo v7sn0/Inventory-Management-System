@@ -22,6 +22,7 @@ const SignIn = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setHandleError(null)
     try {
       const userData = await signIn(formState)
       setFormState(initialState)

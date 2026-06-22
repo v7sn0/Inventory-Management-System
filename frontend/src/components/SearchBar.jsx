@@ -18,9 +18,9 @@ const SearchBar = ({ setProducts }) => {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     setHandleError(null)
     try {
-      e.preventDefault()
       const response = await Client.get(
         `/products/search?name=${formState.name}`
       )
@@ -28,16 +28,12 @@ const SearchBar = ({ setProducts }) => {
       setFormState(initialState)
     } catch (error) {
       setHandleError(error.response.data.message)
-      // console.log(error.response.message)
     }
   }
 
   return (
     <div className="search-bar">
       <form onSubmit={handleSubmit}>
-        {/* <label htmlFor="name" id="search-label">
-          Search
-        </label> */}
         <input
           onChange={handleChange}
           value={formState.name}
