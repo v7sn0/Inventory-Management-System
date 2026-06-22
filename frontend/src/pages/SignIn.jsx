@@ -28,7 +28,7 @@ const SignIn = ({ setUser }) => {
       setFormState(initialState)
       setUser(userData)
       if (userData) {
-        navigate("/")
+        navigate("/home")
       }
     } catch (error) {
       setHandleError(error.response.data.message)

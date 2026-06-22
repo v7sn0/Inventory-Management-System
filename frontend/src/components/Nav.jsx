@@ -12,7 +12,7 @@ const Nav = ({ user, setUser }) => {
 
   return user ? (
     <nav>
-      <NavLink to="/" className="nav-links">
+      <NavLink to="/home" className="nav-links">
         Home
       </NavLink>
       <NavLink to="/add-product" className="nav-links">

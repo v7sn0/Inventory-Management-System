@@ -56,6 +56,18 @@ nav {
   user-select: none;
 }
 
+.welcome-page-btn {
+  width: 200px;
+  background-color: hsl(203, 84%, 76%);
+
+  margin: 50px 20px;
+  height: 70px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 .search-bar {
   margin: 20px;
 }

@@ -7,9 +7,7 @@ const ProtectedRoutes = ({ user }) => {
   return (
     <div className="home">
       <h1>Loading . . .</h1>
-      <h5>
-        If you entered this page unethicially, then sign in and try again :)
-      </h5>
+      <h5>Sign in if you are not signed in yet</h5>
     </div>
   )
 }

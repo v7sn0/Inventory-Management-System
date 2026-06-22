@@ -11,6 +11,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes"
 import { useEffect, useState } from "react"
 import { checkSession } from "./services/auth"
 import Client from "./services/api"
+import Welcome from "./pages/Welcome"
 
 function App() {
   const [user, setUser] = useState(null)
@@ -45,7 +46,7 @@ function App() {
       <Routes>
         <Route element={<ProtectedRoutes user={user} />}>
           <Route
-            path="/"
+            path="/home"
             element={
               <Home user={user} products={products} setProducts={setProducts} />
             }
@@ -74,7 +75,7 @@ function App() {
             element={<ChangePassword user={user} />}
           />
         </Route>
-
+        <Route path="/" element={<Welcome user={user} />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
       </Routes>
