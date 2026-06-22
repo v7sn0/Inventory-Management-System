@@ -33,8 +33,8 @@ Empty for now.
 
 ### Task List ###
 - [x] Create the backend.
-- [ ] Create the frontend.
-- [ ] Style the website.
+- [x] Create the frontend.
+- [x] Style the website.
 
 ### Credits ###
 
