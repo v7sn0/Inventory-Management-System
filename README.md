@@ -4,7 +4,7 @@
 
 ### By: Hasan Mahfoodh ###
 
-#### [LinkedIn](www.linkedin.com/in/hasan-mahfoodh) | [GitHub](https://github.com/v7sn0) ####
+#### [LinkedIn](https://www.linkedin.com/in/hasan-mahfoodh) | [GitHub](https://github.com/v7sn0) ####
 #### [Trello Page](https://trello.com/b/8UWEasjo/ims-project) ####
 ***
 ### Description ###
