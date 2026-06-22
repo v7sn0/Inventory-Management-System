@@ -18,7 +18,7 @@ const Home = ({ user, products, setProducts }) => {
 
   return Loading ? (
     <div className="home">
-      <h1>Welcome to home!</h1>
+      <h1>Your Inventory</h1>
       <SearchBar setProducts={setProducts} />
       <ShowProducts products={products} setProducts={setProducts} />
     </div>

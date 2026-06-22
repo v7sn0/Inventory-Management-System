@@ -10,6 +10,7 @@ const ChangePassword = ({ user }) => {
 
   const [formState, setFormState] = useState(initialState)
   const [handleError, setHandleError] = useState(null)
+  const [handleSuccess, setHandleSuccess] = useState(null)
 
   const handleChange = (e) => {
     setFormState({
@@ -58,6 +59,7 @@ const ChangePassword = ({ user }) => {
           newPassword: formState.newPassword,
         })
         setFormState(initialState)
+        setHandleSuccess(response.data.message)
         console.log("reached")
       } else {
         setHandleError(
@@ -126,6 +128,7 @@ const ChangePassword = ({ user }) => {
           <p id="pasReq5">At least 8 characters, upto 16 characters</p>
           {/* <p id="pasReq6">At most 16 characters</p> */}
         </div>
+        {handleSuccess && <p className="success">{handleSuccess}</p>}
         {handleError && <p className="error">{handleError}</p>}
       </div>
     </div>

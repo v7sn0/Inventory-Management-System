@@ -49,7 +49,7 @@ const ShowProducts = ({ products, setProducts }) => {
               <td>{product.name}</td>
               <td>{product.price}</td>
               <td>{product.qty}</td>
-              <td>
+              <td className="actions">
                 <Link to={`/edit-product/${product._id}`}>
                   <button className="btn edit">Edit</button>
                 </Link>
@@ -57,7 +57,7 @@ const ShowProducts = ({ products, setProducts }) => {
                   className="btn delete"
                   onDoubleClick={() => deleteProduct(product._id)}
                 >
-                  Delete
+                  Delete <small>double click</small>
                 </button>
               </td>
             </tr>
