@@ -222,7 +222,7 @@ const searchForProducts = async (req, res) => {
 module.exports = {
   createProduct,
   getProducts,
-  getProductByID,
+  // getProductByID,
   updateProductById,
   deleteProductById,
   searchForProducts,
