@@ -24,12 +24,12 @@ const createProduct = async (req, res) => {
     } else if (!qtyRegex.test(req.body.qty)) {
       return res.status(400).json({
         status: "Error",
-        message: "Price must be a number that doesn't exceed 999",
+        message: "Quantity must be a number that doesn't exceed 999",
       })
     } else if (!priceRegex.test(req.body.price)) {
       return res.status(400).json({
         status: "Error",
-        message: "Quantity must be a number that doesn't exceed 999",
+        message: "Price must be a number that doesn't exceed 999",
       })
     }
     const product = await Product.create({
@@ -79,25 +79,25 @@ const getProducts = async (req, res) => {
 // }   my code, works fine but any user can update others products.
 // -----------------------------------------------------------------------------------------------------------------
 
-const getProductByID = async (req, res) => {
-  try {
-    const product = await Product.findOne({
-      _id: req.params.id,
-      user: req.user.id,
-    })
+// const getProductByID = async (req, res) => {
+//   try {
+//     const product = await Product.findOne({
+//       _id: req.params.id,
+//       user: req.user.id,
+//     })
 
-    if (product) {
-      return res.status(200).json(product)
-    }
+//     if (product) {
+//       return res.status(200).json(product)
+//     }
 
-    res.status(404).json({ status: "Error", message: "No product found." })
-  } catch (error) {
-    res.status(500).json({
-      status: "Error",
-      message: "An error occurred while finding the product.",
-    })
-  }
-}
+//     res.status(404).json({ status: "Error", message: "No product found." })
+//   } catch (error) {
+//     res.status(500).json({
+//       status: "Error",
+//       message: "An error occurred while finding the product.",
+//     })
+//   }
+// }
 
 const updateProductById = async (req, res) => {
   try {
@@ -135,12 +135,12 @@ const updateProductById = async (req, res) => {
     } else if (!qtyRegex.test(req.body.qty)) {
       return res.status(400).json({
         status: "Error",
-        message: "Price must be a number that doesn't exceed 999",
+        message: "Quantity must be a number that doesn't exceed 999",
       })
     } else if (!priceRegex.test(req.body.price)) {
       return res.status(400).json({
         status: "Error",
-        message: "Quantity must be a number that doesn't exceed 999",
+        message: "Price must be a number that doesn't exceed 999",
       })
     }
 

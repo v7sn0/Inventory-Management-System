@@ -37,16 +37,16 @@ const ShowProducts = ({ products, setProducts }) => {
         <thead>
           <tr>
             <th>Product Name</th>
-            <th>Price in BHD</th>
             <th>Quantity</th>
+            <th>Price in BHD</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
             <tr key={product._id}>
               <td>{product.name}</td>
-              <td>{product.price}</td>
               <td>{product.qty}</td>
+              <td>{product.price}</td>
               <td className="actions">
                 <Link to={`/edit-product/${product._id}`}>
                   <button className="btn edit">Edit</button>
