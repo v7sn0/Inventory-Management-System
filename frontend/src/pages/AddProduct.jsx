@@ -81,9 +81,10 @@ const AddProduct = ({ user, products, setProducts }) => {
           value={formState.price}
           name="price"
           id="price"
-          type="number"
+          type="text"
           className="form-input"
           placeholder="e.g. 30.99"
+          pattern="^\d{1,3}(\.\d{1,3})?$"
         />
 
         {handleError && <p className="error">{handleError}</p>}
