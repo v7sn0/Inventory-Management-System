@@ -57,6 +57,7 @@ const AddProduct = ({ user, products, setProducts }) => {
           id="name"
           type="text"
           className="form-input"
+          placeholder="Product name"
         />
 
         <label htmlFor="qty" className="form-label">
@@ -69,6 +70,7 @@ const AddProduct = ({ user, products, setProducts }) => {
           id="qty"
           type="number"
           className="form-input"
+          placeholder="e.g. 300"
         />
 
         <label htmlFor="price" className="form-label">
@@ -81,6 +83,7 @@ const AddProduct = ({ user, products, setProducts }) => {
           id="price"
           type="number"
           className="form-input"
+          placeholder="e.g. 30.99"
         />
 
         {handleError && <p className="error">{handleError}</p>}

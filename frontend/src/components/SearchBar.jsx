@@ -40,7 +40,7 @@ const SearchBar = ({ setProducts }) => {
           name="name"
           id="name"
           type="text"
-          placeholder="Product Name"
+          placeholder="e.g. Wooden crates"
           id="search-input"
         />
         <button className="btn search">Search</button>

@@ -49,6 +49,7 @@ const SignIn = ({ setUser }) => {
           id="username"
           type="text"
           className="form-input"
+          placeholder="Enter username"
         />
 
         <label htmlFor="password" className="form-label">
@@ -61,6 +62,7 @@ const SignIn = ({ setUser }) => {
           id="password"
           type="password"
           className="form-input"
+          placeholder="Enter password"
         />
 
         <button className="form-btn btn">Sign in</button>

@@ -99,6 +99,7 @@ const SignUp = () => {
                 type="text"
                 maxLength={15}
                 className="form-input"
+                placeholder="e.g. Ali-Woodcraft"
               />
               <label htmlFor="password" className="form-label">
                 Password
@@ -111,6 +112,7 @@ const SignUp = () => {
                 type="password"
                 maxLength={16}
                 className="form-input"
+                placeholder="Enter password"
               />
 
               <label htmlFor="confirm-password" className="form-label">
@@ -124,6 +126,7 @@ const SignUp = () => {
                 type="password"
                 maxLength={16}
                 className="form-input"
+                placeholder="Confirm password"
               />
               <button className="form-btn btn" id="sign-up-btn">
                 Sign up

@@ -88,6 +88,7 @@ const ChangePassword = ({ user }) => {
               id="oldPassword"
               type="password"
               className="form-input"
+              placeholder="Enter old password"
             />
 
             <label htmlFor="confirmPassword" className="form-label">
@@ -100,6 +101,7 @@ const ChangePassword = ({ user }) => {
               id="confirmPassword"
               type="password"
               className="form-input"
+              placeholder="Confirm old password"
             />
 
             <label htmlFor="newPassword" className="form-label">
@@ -112,6 +114,7 @@ const ChangePassword = ({ user }) => {
               id="newPassword"
               type="password"
               className="form-input"
+              placeholder="Enter new password"
             />
 
             <button className="form-btn btn">Change</button>

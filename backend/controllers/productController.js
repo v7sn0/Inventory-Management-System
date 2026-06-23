@@ -4,7 +4,7 @@ const createProduct = async (req, res) => {
   try {
     const nameRegex = /^[a-zA-Z0-9_ -]{3,20}$/
     const qtyRegex = /^[0-9]{1,3}$/
-    const priceRegex = /^[0-9]{1,3}$/
+    const priceRegex = /^\d{1,3}(\.\d{1,3})?$/
 
     const existingProduct = await Product.findOne({
       user: req.user.id,
@@ -110,7 +110,7 @@ const updateProductById = async (req, res) => {
 
     const nameRegex = /^[a-zA-Z0-9_-]{3,20}$/
     const qtyRegex = /^[0-9]{1,3}$/
-    const priceRegex = /^[0-9]{1,3}$/
+    const priceRegex = /^\d{1,3}(\.\d{1,3})?$/
 
     existingProduct.forEach((product) => {
       if (
@@ -135,12 +135,12 @@ const updateProductById = async (req, res) => {
     } else if (!qtyRegex.test(req.body.qty)) {
       return res.status(400).json({
         status: "Error",
-        message: "Quantity must be a number that doesn't exceed 999",
+        message: "Quantity must be a number that doesn't exceed 999.999",
       })
     } else if (!priceRegex.test(req.body.price)) {
       return res.status(400).json({
         status: "Error",
-        message: "Price must be a number that doesn't exceed 999",
+        message: "Price must be a number that doesn't exceed 999.999",
       })
     }
 
